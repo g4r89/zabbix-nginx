@@ -106,3 +106,5 @@ DBPassword=password
 EOF
 
 systemctl enable --now zabbix-server
+systemctl enable --now nginx
+systemctl enable --now php-fpm
