@@ -128,12 +128,11 @@ exit;
 
 zcat /usr/share/doc/zabbix-server-mysql-3.2.3/create.sql.gz | mysql -uroot -ppassword zabbix
 
-cat <<'EOF'> /etc/zabbix/zabbix_server.conf
+vi /etc/zabbix/zabbix_server.conf
 DBHost=localhost
 DBName=zabbix
 DBUser=zabbix
 DBPassword=password
-EOF
 
 systemctl enable --now zabbix-server
 systemctl enable --now nginx
