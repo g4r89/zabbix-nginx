@@ -47,7 +47,7 @@ listen 80;
 
 root /usr/share/zabbix;
 access_log /var/log/nginx/zabbix.access.log;
-server_name zabbix.site.ru;
+server_name zabbix.sk2.su;
 
 location / {
 index index.php index.html index.htm;
