@@ -86,26 +86,23 @@ systemctl enable --now mariadb.service
 
 # install zabbix
 ```bash
-cat <<'EOF'> /etc/yum.repos.d/zabbix.repo
-[zabbix]
-name=Zabbix Official Repository - $basearch
-baseurl=http://repo.zabbix.com/zabbix/3.2/rhel/7/$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591
 
-[zabbix-non-supported]
-name=Zabbix Official Repository non-supported - $basearch
-baseurl=http://repo.zabbix.com/non-supported/rhel/7/$basearch/
-enabled=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX
-gpgcheck=1
-EOF
-
+rpm -ivh http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm
 yum install -y zabbix-server-mysql zabbix-web-mysql
+
 mysql -uroot -p
 create database zabbix character set utf8 collate utf8_bin;
 grant all privileges on zabbix.* to zabbix@localhost identified by 'password';
 flush privileges;
 exit;
 
+zcat /usr/share/doc/zabbix-server-mysql-3.2.3/create.sql.gz | mysql -uroot -ppassword zabbix
+
+cat <<'EOF'> /etc/zabbix/zabbix_server.conf
+DBHost=localhost
+DBName=zabbix
+DBUser=zabbix
+DBPassword=password
+EOF
+
+systemctl enable --now zabbix-server
