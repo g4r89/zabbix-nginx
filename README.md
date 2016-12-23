@@ -137,3 +137,6 @@ DBPassword=password
 systemctl enable --now zabbix-server
 systemctl enable --now nginx
 systemctl enable --now php-fpm
+
+yum -y install zabbix-agent
+systemctl enable --now zabbix-agent
