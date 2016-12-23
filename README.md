@@ -35,7 +35,6 @@ setenforce 0
 
 systemctl disable --now firewalld
 ```
-
 # install nginx
 ```bash
 yum -y update
@@ -106,17 +105,14 @@ fastcgi_temp_file_write_size 256k;
 }
 EOF
 ```
-
 # install mariadb
 ```bash
 yum install -y mariadb-server
 systemctl enable --now mariadb.service
 /usr/bin/mysql_secure_installation
 ```
-
 # install zabbix
 ```bash
-
 rpm -ivh http://repo.zabbix.com/zabbix/3.2/rhel/7/x86_64/zabbix-release-3.2-1.el7.noarch.rpm
 yum install -y zabbix-server-mysql zabbix-web-mysql
 
