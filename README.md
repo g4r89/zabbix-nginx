@@ -28,6 +28,7 @@ EOF
 
 systemctl restart network
 
+echo 'zabbix.sk2.su' > /etc/hostname
 yum install -y epel-release && yum -y update
 sed -i.bak '/SELINUX/s/enforcing/permissive/' /etc/selinux/config
 setenforce 0
