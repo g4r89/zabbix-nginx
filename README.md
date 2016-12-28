@@ -137,4 +137,4 @@ systemctl enable --now php-fpm
 yum -y install zabbix-agent
 systemctl enable --now zabbix-agent
 
-sed -i.bak '/# StartDiscoverers=1/StartDiscoverers=3/' /etc/zabbix/zabbix_server.conf
+sed -i.bak 's/# StartDiscoverers=1/StartDiscoverers=3/' /etc/zabbix/zabbix_server.conf
